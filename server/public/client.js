@@ -60,7 +60,7 @@ function renderNumbers() {
 
 function clearHistory() {
     $.ajax({
-        method: 'GET',
+        method: 'DELETE',
         url: '/clearHistory'
     }).then((response) => {
         console.log('/clearHistory response', response);

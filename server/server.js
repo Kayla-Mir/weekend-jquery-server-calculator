@@ -15,10 +15,10 @@ app.get('/numbers', (req, res) => {
     res.send(numbersToCalculate);
 });
 
-app.get('/clearHistory', (req, res) => {
-    console.log('in GET /clearHistory');
+app.delete('/clearHistory', (req, res) => {
+    console.log('in DELETE /clearHistory');
     clearHistory();
-    res.send(200);
+    res.sendStatus(200);
 })
 
 app.post('/sendNumbers', (req, res) => {
