@@ -1,0 +1,94 @@
+$(document).ready(onReady);
+
+function onReady() {
+    renderNumbers();
+    $('#equals-btn').on('click', sendNumbersToServer);
+    $('#plus-btn').on('click', setPlus);
+    $('#minus-btn').on('click', setMinus);
+    $('#multiply-btn').on('click', setMultiply);
+    $('#divide-btn').on('click', setDivide);
+    $('#clear-btn').on('click', clearInputs);
+    $('#clear-history').on('click', clearHistory);
+}
+
+let newNumbers = {
+    operator: 0,
+};
+
+const setPlus = () => {
+    newNumbers.operator = '+';
+}
+
+const setMinus = () => {
+    newNumbers.operator = '-';
+}
+
+const setMultiply = () => {
+    newNumbers.operator = '*';
+}
+
+const setDivide = () => {
+    newNumbers.operator = '/';
+}
+
+const clearInputs = () => {
+    $('#first-number-input').val('');
+    $('#second-number-input').val('');
+    newNumbers.operator = 0;
+}
+
+function renderNumbers() {
+    $.ajax({
+        method: 'GET',
+        url: '/numbers'
+    }).then((response) => {
+        console.log('/numbers response', response);
+        $('#history-area').empty();
+        for (let line of response) {
+            $('#history-area').append(`
+                <li>${line.valueOne} ${line.operator} ${line.valueTwo} = ${line.result}</li>
+            `);
+        }
+        if (response.result) {
+            $('#result-latest').empty();
+            $('#result-latest').append(`Answer: ${response[response.length - 1].result}`);
+        }
+    }).catch((error) => {
+        console.log('error', error);
+    });
+}
+
+function clearHistory() {
+    $.ajax({
+        method: 'GET',
+        url: '/clearHistory'
+    }).then((response) => {
+        console.log('/clearHistory response', response);
+        $('#result-latest').empty();
+        $('#history-area').empty();
+    }).catch((error) => {
+        console.log('error', error); 
+    })
+}
+
+function sendNumbersToServer() {  
+    newNumbers.valueOne = $('#first-number-input').val();
+    newNumbers.valueTwo = $('#second-number-input').val();
+
+    if (newNumbers.operator === 0 
+        || newNumbers.valueOne === '' 
+        || newNumbers.valueTwo === '') {
+        alert('Please make sure all fields are provided!')
+    } else {
+        $.ajax({
+            method: 'POST',
+            url: '/sendNumbers',
+            data: newNumbers
+        }).then((response) => {
+            console.log('response', response);
+            renderNumbers();
+        }).catch((error) => {
+            console.log('error', error);
+        });
+    }
+}
