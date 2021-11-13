@@ -1,3 +1,46 @@
 body {
     background-color: lavenderblush;
 }
+
+h1 {
+    text-align: center;
+}
+
+#calculate-fields {
+    text-align: center;
+}
+
+input {
+    padding: 5px 10px;
+}
+
+#btn-div {
+    margin-top: .5vh;
+    text-align: center;
+}
+
+#equals-btn {
+    padding: 8px 40px;
+    margin-right: 1vw;
+}
+
+button {
+    margin: 0.1vw;
+    padding: 8px 18px;
+    background-color: rgb(255, 228, 232);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+#result-latest {
+    margin-left: 39vw;
+}
+
+#history-area {
+    font-size: large;
+    margin: 0vw 35vw;
+}
+
+#clear-history {
+    margin: 15px 40vw;
+}

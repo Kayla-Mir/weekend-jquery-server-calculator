@@ -12,15 +12,19 @@
 <body>
     <h1>Server Side Calculator</h1>
     
-    <input id="first-number-input" type="number">
-    <button id="plus-btn">+</button>
-    <button id="minus-btn">-</button>
-    <button id="multiply-btn">*</button>
-    <button id="divide-btn">/</button>
-    <input id="second-number-input" type="number">
-    <button id="equals-btn">=</button>
-    <button id="clear-btn">Clear</button>
-
+    <div id="calculate-fields">
+        <input id="first-number-input" type="number" placeholder="First Number">
+        <button id="plus-btn">+</button>
+        <button id="minus-btn">-</button>
+        <button id="multiply-btn">*</button>
+        <button id="divide-btn">/</button>
+        <input id="second-number-input" type="number" placeholder="Second Number">
+        
+    </div>
+    <div id="btn-div">
+        <button id="equals-btn">=</button>
+        <button id="clear-btn">Clear Inputs</button>
+    </div>
     <h3 id="result-latest"></h3>
     <div>
         <ul id="history-area">

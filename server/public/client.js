@@ -49,7 +49,7 @@ function renderNumbers() {
                 <li>${line.valueOne} ${line.operator} ${line.valueTwo} = ${line.result}</li>
             `);
         }
-        if (response.result) {
+        if (response.length !== 0 ) {
             $('#result-latest').empty();
             $('#result-latest').append(`Answer: ${response[response.length - 1].result}`);
         }
