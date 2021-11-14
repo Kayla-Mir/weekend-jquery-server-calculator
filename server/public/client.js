@@ -11,10 +11,12 @@ function onReady() {
     $('#clear-history').on('click', clearHistory);
 }
 
+// set the operator of object array to 0 so I know no operator has been chosen yet
 let newNumbers = {
     operator: 0,
 };
 
+// the below 4 functions set the operator
 const setPlus = () => {
     newNumbers.operator = '+';
 }
@@ -37,6 +39,8 @@ const clearInputs = () => {
     newNumbers.operator = 0;
 }
 
+// sends a GET request to the server to send back the stored numbers, operator, and results
+// to be displayed on the DOM
 function renderNumbers() {
     $.ajax({
         method: 'GET',
@@ -48,7 +52,9 @@ function renderNumbers() {
             $('#history-area').append(`
                 <li>${line.valueOne} ${line.operator} ${line.valueTwo} = ${line.result}</li>
             `);
-        }
+        }   // if the response length isn't empty then it will appened the latest result to the 
+            // DOM, this prevents a slight bug of on page load if the object is empty result
+            // doesn't exist
         if (response.length !== 0 ) {
             $('#result-latest').empty();
             $('#result-latest').append(`Answer: ${response[response.length - 1].result}`);
@@ -58,6 +64,9 @@ function renderNumbers() {
     });
 }
 
+
+// sends a delete request that will empty the stored objects on the server and also clear the
+// DOM of its history
 function clearHistory() {
     $.ajax({
         method: 'DELETE',
@@ -71,6 +80,7 @@ function clearHistory() {
     })
 }
 
+// takes the input numbers and operator and sends them to the server to be stored
 function sendNumbersToServer() {  
     newNumbers.valueOne = $('#first-number-input').val();
     newNumbers.valueTwo = $('#second-number-input').val();
