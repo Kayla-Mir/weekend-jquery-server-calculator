@@ -30,7 +30,7 @@ ___
 
 1. Input your numbers into the provided fields.
 2. Choose your operator (+, -, *, or /).
-3. Hit the '=' button. Your result will be displayed at the underneath in input fields.
+3. Hit the '=' button. Your result will be displayed underneath the input fields.
 4. If your need to clear out your input fields easily, there is a 'Clear Inputs' button provided.
 5. Similarily there is also a 'Clear History' button if you find its getting too big or you just don't need the calculations anymore.
 
